@@ -55,9 +55,13 @@ function createCard() {
     cardSupportingText.textContent = "In San Francisco";
     cardSupportingText.style.textAlign = "center";
 
-    const cardButton = document.createElement("button");
-    cardButton.innerText = "Click me";
-    cardSupportingText.appendChild(cardButton);
+    const testButtonClicked = () => {
+        alert("Clicked!");
+    };
+    const cardTestButton = document.createElement("button");
+    cardTestButton.innerText = "Click me";
+    cardTestButton.addEventListener("click", testButtonClicked);
+    cardSupportingText.appendChild(cardTestButton);
 
     var cardSaveButton = document.createElement("button");
     cardSaveButton.textContent = "Save";
