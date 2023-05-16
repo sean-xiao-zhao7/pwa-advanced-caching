@@ -55,21 +55,21 @@ function createCard() {
     cardSupportingText.textContent = "In San Francisco";
     cardSupportingText.style.textAlign = "center";
 
-    if ("caches" in window) {
-        const testButtonClicked = () => {
-            caches.open("user-requests").then((cache) => {
-                cache.addAll([
-                    "https://httpbin.org/get",
-                    "/src/images/sf-boat.jpg",
-                ]);
-            });
-        };
+    // if ("caches" in window) {
+    //     const testButtonClicked = () => {
+    //         caches.open("user-requests").then((cache) => {
+    //             cache.addAll([
+    //                 "https://httpbin.org/get",
+    //                 "/src/images/sf-boat.jpg",
+    //             ]);
+    //         });
+    //     };
 
-        const cardTestButton = document.createElement("button");
-        cardTestButton.innerText = "Click me";
-        cardTestButton.addEventListener("click", testButtonClicked);
-        cardSupportingText.appendChild(cardTestButton);
-    }
+    //     const cardTestButton = document.createElement("button");
+    //     cardTestButton.innerText = "Click me";
+    //     cardTestButton.addEventListener("click", testButtonClicked);
+    //     cardSupportingText.appendChild(cardTestButton);
+    // }
 
     var cardSaveButton = document.createElement("button");
     cardSaveButton.textContent = "Save";
