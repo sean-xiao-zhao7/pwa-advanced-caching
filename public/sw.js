@@ -1,4 +1,4 @@
-var CACHE_STATIC_NAME = "static-v10";
+var CACHE_STATIC_NAME = "static-v11";
 var CACHE_DYNAMIC_NAME = "dynamic-v2";
 
 self.addEventListener("install", function (event) {
@@ -9,6 +9,7 @@ self.addEventListener("install", function (event) {
             cache.addAll([
                 "/",
                 "/index.html",
+                "/404.html",
                 "/src/js/app.js",
                 "/src/js/feed.js",
                 "/src/js/promise.js",
