@@ -1,4 +1,4 @@
-var CACHE_STATIC_NAME = "static-v11";
+var CACHE_STATIC_NAME = "static-v12";
 var CACHE_DYNAMIC_NAME = "dynamic-v2";
 
 self.addEventListener("install", function (event) {
@@ -64,7 +64,9 @@ self.addEventListener("fetch", function (event) {
                                 return res;
                             });
                     })
-                    .catch(function (err) {});
+                    .catch(function (err) {
+                        return caches.match("/404.html");
+                    });
             }
         })
     );
