@@ -80,10 +80,32 @@ function createCard() {
     sharedMomentsArea.appendChild(cardWrapper);
 }
 
+const cardUrl = "https://httpbin.org/get";
+let finished = false;
+
 fetch("https://httpbin.org/get")
     .then(function (res) {
         return res.json();
     })
-    .then(function (data) {
-        createCard();
+    .then(function (_) {
+        if (!finished) {
+            finished = true;
+            createCard();
+        }
     });
+
+if ("caches" in window) {
+    caches
+        .match(cardUrl)
+        .then((res) => {
+            if (res) {
+                return res.json();
+            }
+        })
+        .then((_) => {
+            if (!finished) {
+                finished = true;
+                createCard();
+            }
+        });
+}
