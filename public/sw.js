@@ -1,5 +1,5 @@
-var CACHE_STATIC_NAME = "static-v14";
-var CACHE_DYNAMIC_NAME = "dynamic-v4";
+var CACHE_STATIC_NAME = "static-v15";
+var CACHE_DYNAMIC_NAME = "dynamic-v5";
 
 self.addEventListener("install", function (event) {
     console.log("[Service Worker] Installing Service Worker ...", event);
@@ -27,35 +27,36 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("activate", function (event) {
-    console.log("[Service Worker] Activating Service Worker ....", event);
-    event.waitUntil(
-        caches.keys().then(function (keyList) {
-            return Promise.all(
-                keyList.map(function (key) {
-                    if (
-                        key !== CACHE_STATIC_NAME &&
-                        key !== CACHE_DYNAMIC_NAME
-                    ) {
-                        console.log(
-                            "[Service Worker] Removing old cache.",
-                            key
-                        );
-                        return caches.delete(key);
-                    }
-                })
-            );
-        })
-    );
-    return self.clients.claim();
+    // console.log("[Service Worker] Activating Service Worker ....", event);
+    // event.waitUntil(
+    //     caches.keys().then(function (keyList) {
+    //         return Promise.all(
+    //             keyList.map(function (key) {
+    //                 if (
+    //                     key !== CACHE_STATIC_NAME &&
+    //                     key !== CACHE_DYNAMIC_NAME
+    //                 ) {
+    //                     console.log(
+    //                         "[Service Worker] Removing old cache.",
+    //                         key
+    //                     );
+    //                     return caches.delete(key);
+    //                 }
+    //             })
+    //         );
+    //     })
+    // );
+    // return self.clients.claim();
 });
 
 self.addEventListener("fetch", function (event) {
-    event.respondWith(
-        caches.open(CACHE_DYNAMIC_NAME).then((dynamicCache) => {
-            return fetch(event.request).then((res) => {
-                dynamicCache.put(event.request, res.clone());
-                return res;
-            });
-        })
-    );
+    event.respondWith(fetch(event.request));
+    // event.respondWith(
+    //     caches.open(CACHE_DYNAMIC_NAME).then((dynamicCache) => {
+    //         return fetch(event.request).then((res) => {
+    //             dynamicCache.put(event.request, res.clone());
+    //             return res;
+    //         });
+    //     })
+    // );
 });
